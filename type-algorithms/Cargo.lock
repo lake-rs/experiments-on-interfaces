@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "scratch-interfaces"
+name = "type-algorithms"
 version = "0.1.0"

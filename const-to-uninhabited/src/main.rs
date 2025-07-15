@@ -22,8 +22,14 @@ impl<const UNINHABITED: usize> MaybeUninhabited<UNINHABITED> {
     }
 }
 
+const fn guiding() -> usize {
+    0
+}
+
 fn main() {
     println!("Hello");
     let _a: MaybeUninhabited<0> = MaybeUninhabited::new();
+    const GUIDANCE: usize = guiding();
+    let _a: MaybeUninhabited<GUIDANCE> = MaybeUninhabited::new();
     //let _b: MaybeUninhabited<1> = MaybeUninhabited::new();
 }

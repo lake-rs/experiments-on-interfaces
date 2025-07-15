@@ -22,14 +22,21 @@ impl<const UNINHABITED: usize> MaybeUninhabited<UNINHABITED> {
     }
 }
 
-const fn guiding() -> usize {
-    0
+trait Guiding {
+    const NEEDS_FOO: usize;
+    const NEEDS_BAR: usize;
+}
+
+struct ConcreteGuidance;
+
+impl Guiding for ConcreteGuidance {
+    const NEEDS_FOO: usize = 0;
+    const NEEDS_BAR: usize = 1;
 }
 
 fn main() {
     println!("Hello");
     let _a: MaybeUninhabited<0> = MaybeUninhabited::new();
-    const GUIDANCE: usize = guiding();
-    let _a: MaybeUninhabited<GUIDANCE> = MaybeUninhabited::new();
+    let _a: MaybeUninhabited<{ ConcreteGuidance::NEEDS_FOO }> = MaybeUninhabited::new();
     //let _b: MaybeUninhabited<1> = MaybeUninhabited::new();
 }
